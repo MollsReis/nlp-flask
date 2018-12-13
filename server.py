@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, jsonify, request
 from dragnet import extract_content, extract_content_and_comments
 from gensim.summarization.mz_entropy import mz_keywords
 from gensim.summarization import keywords as textrank_keywords
@@ -18,12 +18,12 @@ def dragnet_extract_content_and_comments():
 
 @app.route('/gensim/mz-keywords', methods=['POST'])
 def gensim_mz_keywords():
-    return mz_keywords(request.data)
+    return jsonify(mz_keywords(request.data))
 
 
 @app.route('/gensim/textrank-keywords', methods=['POST'])
 def gensim_textrank_keywords():
-    return textrank_keywords(request.data)
+    return jsonify(textrank_keywords(request.data))
 
 
 if __name__ == '__main__':
