@@ -22,7 +22,7 @@ def gensim_mz_keywords():
 
 
 @app.route('/gensim/textrank-keywords', methods=['POST'])
-def gensim_mz_keywords():
+def gensim_textrank_keywords():
     return textrank_keywords(request.data)
 
 
