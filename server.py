@@ -18,12 +18,12 @@ def dragnet_extract_content_and_comments():
 
 @app.route('/gensim/mz-keywords', methods=['POST'])
 def gensim_mz_keywords():
-    return jsonify(mz_keywords(request.data))
+    return jsonify(mz_keywords(request.data, split=True))
 
 
 @app.route('/gensim/textrank-keywords', methods=['POST'])
 def gensim_textrank_keywords():
-    return jsonify(textrank_keywords(request.data))
+    return jsonify(textrank_keywords(request.data, split=True, lemmatize=True))
 
 
 if __name__ == '__main__':

@@ -2,7 +2,7 @@
 ### Common NLP functions on a Flask server (Dockerized)
 
 Usage:
-Post `text/plain` data to one of the following endpoints:
+POST data to one of the following endpoints:
 - `/dragnet/content` [Dragnet content extraction](https://github.com/dragnet-org/dragnet)
 - `/dragnet/content-comments` [Dragnet content + comments extraction](https://github.com/dragnet-org/dragnet)
 - `/gensim/mz-keywords` [Keywords for the Montemurro and Zanette entropy algorithm](https://radimrehurek.com/gensim/summarization/mz_entropy.html)
