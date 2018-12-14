@@ -1,6 +1,11 @@
-from flask import Flask, jsonify, request
 from dragnet import extract_content, extract_content_and_comments
+from flask import Flask, jsonify, request
 from gensim.summarization import keywords as textrank_keywords
+from nlp.rake import rake_keywords
+
+# silence deprecation warnings
+import warnings
+warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 app = Flask(__name__)
 
@@ -18,6 +23,11 @@ def dragnet_extract_content_and_comments():
 @app.route('/gensim/textrank-keywords', methods=['POST'])
 def gensim_textrank_keywords():
     return jsonify(textrank_keywords(request.data, split=True, lemmatize=True))
+
+
+@app.route('/nlp/rake-keywords', methods=['POST'])
+def nlp_rake_keywords():
+    return jsonify(rake_keywords(request.data))
 
 
 if __name__ == '__main__':
