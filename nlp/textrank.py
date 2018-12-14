@@ -9,14 +9,6 @@ NUM_RETURNED = 10
 RADIUS = 4
 
 
-def vectorize(words, vocab):
-    return np.array(list(words.count(w) for w in vocab))
-
-
-def similarity(u, v):
-    return np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
-
-
 def combine_keywords(keywords, doc):
     for word in keywords:
         others = keywords[:]
