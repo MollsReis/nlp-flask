@@ -6,7 +6,7 @@ from nlp.stopwords import SEO_STOP_WORDS
 from nltk.tokenize import word_tokenize
 
 NUM_RETURNED = 10
-RADIUS = 4  # TODO experiment with bigger radius
+RADIUS = 10
 
 
 def combine_keywords(keywords, doc):
@@ -14,7 +14,7 @@ def combine_keywords(keywords, doc):
         others = keywords[:]
         others.remove(word)
         for other in others:
-            if re.search(r'\b%s %s\b' % (word, other), doc):
+            if re.search(r'\b%s %s\b' % (word, other), doc) and len(('%s %s' % (word, other)).split()) <= 4:
                 new_keywords = keywords[:]
                 new_keywords.remove(word)
                 new_keywords.remove(other)
@@ -46,7 +46,10 @@ def textrank_keywords(doc, radius=RADIUS, num=NUM_RETURNED):
         for idx in indices:
             neighbors = doc_tokens[max(0, idx - radius):min(len(doc_tokens) - 1, idx + radius + 1)]
             for n in neighbors:
-                graph.add_edge(word, n)  # TODO ensure edges retain volume
+                if graph.has_edge(word, n):
+                    graph[word][n]['weight'] += 1
+                else:
+                    graph.add_edge(word, n, weight=1)
     graph = nx.attr_matrix(graph, normalized=True, rc_order=vocab, dtype=np.float64)
 
     # do textrank (reduce graph to single vector)
