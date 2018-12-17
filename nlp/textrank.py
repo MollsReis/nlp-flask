@@ -56,6 +56,7 @@ def textrank_keywords(doc, radius=RADIUS, num=NUM_RETURNED):
     n = len(vocab)
     eps = 0.00001
     d = 0.85
+    np.random.seed(0)  # make the algorithm deterministic
     v = np.random.rand(n, 1)
     v = v / np.linalg.norm(v, 1)
     last_v = np.ones((n, 1), dtype=np.float64) * 100
