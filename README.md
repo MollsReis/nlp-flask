@@ -7,4 +7,4 @@ POST data to one of the following endpoints:
 - `/dragnet/content-comments` [Dragnet content + comments extraction](https://github.com/dragnet-org/dragnet)
 - `/gensim/textrank-keywords` [Keywords for TextRank summarization algorithm](https://radimrehurek.com/gensim/summarization/keywords.html)
 - `/nlp/rake-keywords` [RAKE keyword extraction algorithm]()
-- `/nlp/textrank-keywords` [TextRank algorithm (using n-grams)]()
+- `/nlp/textrank-keywords` [Custom TextRank keyword extraction algorithm](https://en.wikipedia.org/wiki/PageRank)
