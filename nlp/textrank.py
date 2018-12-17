@@ -34,6 +34,10 @@ def textrank_keywords(doc, radius=RADIUS, num=NUM_RETURNED):
     # TODO stemming
     vocab = list(set(doc_tokens))
 
+    # bail out if there is no vocab
+    if len(vocab) == 0:
+        return []
+
     # create graph
     graph = nx.Graph()
     graph.add_nodes_from(vocab)

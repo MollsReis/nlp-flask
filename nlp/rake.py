@@ -23,6 +23,10 @@ def rake_keywords(doc, num=NUM_RETURNED, max_length=KEYWORD_PHRASE_MAX_LENGTH, m
     stemmer = PorterStemmer()
     uniq_words = set(stemmer.stem(w) for w in ' '.join(key_phrases).split())
 
+    # bail out if there is no vocab
+    if len(uniq_words) == 0:
+        return []
+
     # calculate score of each word
     word_scores = defaultdict(lambda: 0)
     for word in uniq_words:
