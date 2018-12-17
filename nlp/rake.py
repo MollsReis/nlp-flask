@@ -45,5 +45,5 @@ def rake_keywords(doc, num=NUM_RETURNED, max_length=KEYWORD_PHRASE_MAX_LENGTH, m
         phrase_scores[phrase] = score
 
     # return top $num phrases by score
-    ranked_phrases = sorted(phrase_scores.keys(), key=lambda k: -phrase_scores[k])
+    ranked_phrases = sorted(list(phrase_scores.keys()), key=lambda k: -phrase_scores[k])
     return ranked_phrases[0:num]
